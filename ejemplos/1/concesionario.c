@@ -17,6 +17,7 @@ struct concesionario *curso_concesionario_alloc(void)
 	if (con ==  NULL)
 		return NULL;
 
+	// Inicializar lista
 	INIT_LIST_HEAD(&con->garaje);
 
 	return con;
@@ -31,6 +32,10 @@ void curso_concesionario_free(struct concesionario *con)
 		xfree(con->dueno);
 
 	list_for_each_entry_safe(c, tmp, &con->garaje, head) {
+		// Borrado seguro de los elementos de la lista
+		// Si intercambiamos las posiciones de estos dos
+		// accederiamos a una posicion de memoria que ha sido liberada.
+		// CRASH
 		list_del(&c->head);
 		curso_coche_free(c);
 	}
@@ -44,13 +49,16 @@ void curso_concesionario_attr_unset_coche(struct concesionario *con,
 	int i = 0;
 	struct coche *c, *tmp;
 
-	if (pos > 0 && pos > con->num_coches)
+	// Esta comprobación no se nos fastidiaria el código. No haría crash. Pero es funcional
+	if (pos < 0 || pos > con->num_coches)
 		return;
 
 	list_for_each_entry_safe(c, tmp, &con->garaje, head) {
 		if (i == pos) {
 			list_del(&c->head);
-			xfree(c);
+			// Aqui no se liberaria todo los datos. QUedarian los atributos sin liberar
+			// xfree(c);
+			curso_coche_free(c);
 			break;
 		}
 
