@@ -5,17 +5,16 @@ int main(void)
 	struct coche *c1, *c2;
 	struct concesionario *con;
 	char info[4000];
-
 	c1 = curso_coche_alloc();
 
-	curso_coche_attr_set_str(c1, CURSO_COCHE_ATTR_MATRICULA, "DF 67838 SE");
-	curso_coche_attr_set_str(c1, CURSO_COCHE_ATTR_MARCA, "mini");
+	curso_coche_attr_set_str(c1, CURSO_COCHE_ATTR_MATRICULA, "SE1424D");
+	curso_coche_attr_set_str(c1, CURSO_COCHE_ATTR_MARCA, "BMW");
 	curso_coche_attr_set_u32(c1, CURSO_COCHE_ATTR_ID, 0);
 
 	c2 = curso_coche_alloc();
 
-	curso_coche_attr_set_str(c2, CURSO_COCHE_ATTR_MATRICULA, "DF 8819 M");
-	curso_coche_attr_set_str(c2, CURSO_COCHE_ATTR_MARCA, "BMW");
+	curso_coche_attr_set_str(c2, CURSO_COCHE_ATTR_MATRICULA, "MX 1239 T");
+	curso_coche_attr_set_str(c2, CURSO_COCHE_ATTR_MARCA, "Mercedes");
 	curso_coche_attr_set_u32(c2, CURSO_COCHE_ATTR_ID, 0);
 
 	con = curso_concesionario_alloc();
