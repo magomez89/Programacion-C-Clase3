@@ -154,7 +154,7 @@ int curso_concesionario_snprintf(char *buf, size_t size,
 {
 	int ret = 0;
 	struct coche *c;
-	
+
 	ret += snprintf(buf, size,
 			"el concesionario propiedad de %s, tiene %d y son:\n",
 			con->dueno, con->num_coches);
